@@ -3,7 +3,7 @@
   "providerName": "Werkmail",
   "serviceId": "email",
   "serviceName": "Werkmail Email Authentication",
-  "version": 2,
+  "version": 3,
   "logoUrl": "https://werkmail.eu/bimi-logo.svg",
   "description": "Configures AWS SES Easy DKIM, custom MAIL FROM (bounce), apex SPF, and DMARC so Werkmail can send authenticated email from your domain.",
   "variableDescription": "%dkim1%, %dkim2%, and %dkim3% are the three Amazon SES Easy-DKIM CNAME tokens for this sending domain. MAIL FROM MX targets eu-central-1 (static).",
@@ -46,6 +46,14 @@
       "type": "SPFM",
       "host": "bounce",
       "spfRules": "include:amazonses.com"
+    },
+    {
+      "groupId": "inbound",
+      "type": "MX",
+      "host": "in",
+      "pointsTo": "inbound.werkmail.eu",
+      "priority": 10,
+      "ttl": 3600
     },
     {
       "groupId": "spf",
